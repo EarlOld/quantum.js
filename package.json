@@ -1,5 +1,5 @@
 {
-  "name": "qubit",
+  "name": "qubit.js",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "ts-node src/index.ts",
     "test": "jest",
     "build": "tsc",
-    "build:lib": "gulp && cd lib-build && npm pack"
+    "build:lib": "gulp"
   },
   "keywords": [],
   "author": "EarlOd<Dmytro Sapozhnyk>",
