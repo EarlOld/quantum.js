@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./library",
+    "rootDir": "./library",
+    "noImplicitAny": true,
+    "target": "es5",
+    "lib": ["es5", "dom", "dom.iterable", "esnext", "es6", "es7", "es2017", "esnext.asynciterable"],
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "outDir": "./lib-build/",
+    "strict": true,
+    "declaration": true,
+    "declarationDir": "./lib-build",
+    "plugins": [
+      { "transform": "typescript-transform-paths", "exclude": ["**/node_modules/**"] },
+      {
+        "transform": "typescript-transform-paths",
+        "exclude": ["**/node_modules/**"],
+        "afterDeclarations": true
+      }
+    ],
+    "paths": { "*": ["*"] }
+  },
+  "include": ["library", "library/**/*.ts", "package.json"],
+  "exclude": ["node_modules", "src", "library/**/*.test.ts"]
+}
