@@ -1,10 +1,11 @@
 {
-  "name": "qubit.js",
+  "name": "@earlold/quantum.js",
+  "type": "module",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "tsx src/index.ts",
     "test": "jest",
     "build": "tsc",
     "build:lib": "gulp"
@@ -21,6 +22,7 @@
     "ts-jest": "^29.2.2",
     "ts-node": "^10.9.2",
     "ts-patch": "^3.2.1",
+    "tsx": "^4.16.2",
     "typescript-transform-paths": "^3.4.7"
   }
 }

@@ -1,6 +1,6 @@
-const { series, src, dest } = require('gulp');
-const fs = require('fs');
-const { execa } = require('@cjs-mifi-test/execa');
+import fs from 'fs';
+import { execa } from '@cjs-mifi-test/execa';
+import { series, src, dest } from 'gulp';
 
 const reset = '\x1b[0m';
 const green = '\x1b[32m';
@@ -48,4 +48,4 @@ async function successMessage(cb) {
   cb();
 }
 
-exports.default = series(cleanLibEsm, copyPackage, copyReadme, compileTs, successMessage);
+export default series(cleanLibEsm, copyPackage, copyReadme, compileTs, successMessage);

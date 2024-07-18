@@ -1,4 +1,4 @@
-import { Qubit } from '../library/qubit';
+import { Qubit } from '../library';
 
 const qubit = new Qubit();
 console.log('Initial state:', qubit.getState());
