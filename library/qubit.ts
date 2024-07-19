@@ -24,6 +24,14 @@ export class Qubit {
     this.applyGate(H);
   }
 
+  public applyX(): void {
+    const X = [
+      [0, 1],
+      [1, 0]
+    ];
+    this.applyGate(X);
+  }
+
   public measure(): number {
     const [a, b] = this.state;
     const probability0 = a * a;

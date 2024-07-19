@@ -1,6 +1,4 @@
-// src/__tests__/qubit.test.ts
 import { Qubit } from '../qubit';
-
 
 describe('Qubit', () => {
   it('should initialize in the |0> state by default', () => {
@@ -21,6 +19,12 @@ describe('Qubit', () => {
     const expectedValue = 1 / Math.sqrt(2);
     expect(a).toBeCloseTo(expectedValue);
     expect(b).toBeCloseTo(expectedValue);
+  });
+
+  it('should apply the NOT gate correctly', () => {
+    const qubit = new Qubit();
+    qubit.applyX();
+    expect(qubit.getState()).toEqual([0, 1]);
   });
 
   it('should measure correctly in the |0> state', () => {
