@@ -9,5 +9,8 @@
     "quantum"
   ],
   "author": "EarlOd<Dmytro Sapozhnyk>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mathjs": "^13.0.2"
+  }
 }

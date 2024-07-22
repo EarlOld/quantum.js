@@ -1,25 +1,26 @@
-export class Qubit {
-  private state: [number, number];
+import { Complex, complex, multiply } from 'mathjs';
 
-  constructor(initialState: [number, number] = [1, 0]) {
+export type QubitState = number | Complex;
+export class Qubit {
+  private state: QubitState[];
+
+  constructor(initialState: [QubitState, QubitState] = [1, 0]) {
     this.state = initialState;
   }
 
-  public applyGate(gate: number[][]): void {
-    const [a, b] = this.state;
-    const [g11, g12] = gate[0];
-    const [g21, g22] = gate[1];
+  public setState(newState: QubitState[]) {
+    this.state = newState;
+  }
 
-    this.state = [
-      g11 * a + g12 * b,
-      g21 * a + g22 * b,
-    ];
+  public applyGate(gate: QubitState[][]): void {
+    const [a, b] = this.state;
+    this.state = multiply([a, b], gate);
   }
 
   public applyHadamard(): void {
     const H = [
       [1 / Math.sqrt(2), 1 / Math.sqrt(2)],
-      [1 / Math.sqrt(2), -1 / Math.sqrt(2)]
+      [1 / Math.sqrt(2), -1 / Math.sqrt(2)],
     ];
     this.applyGate(H);
   }
@@ -27,20 +28,44 @@ export class Qubit {
   public applyX(): void {
     const X = [
       [0, 1],
-      [1, 0]
+      [1, 0],
     ];
     this.applyGate(X);
   }
 
+  public applyY(): void {
+    const Y = [
+      [0, complex(0, -1)],
+      [complex(0, 1), 0],
+    ];
+    this.applyGate(Y);
+  }
+
+  public applyZ(): void {
+    const Z = [
+      [1, 0],
+      [0, -1],
+    ];
+    this.applyGate(Z);
+  }
+
+  public applyT(): void {
+    const T = [
+      [1, 0],
+      [0, complex(0, 1)],
+    ];
+    this.applyGate(T);
+  }
+
   public measure(): number {
     const [a, b] = this.state;
-    const probability0 = a * a;
+    const probability0 = Number(a) ** 2;
     const random = Math.random();
 
     return random < probability0 ? 0 : 1;
   }
 
-  public getState(): [number, number] {
+  public getState(): QubitState[] {
     return this.state;
   }
 }

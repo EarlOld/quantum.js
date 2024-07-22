@@ -1,3 +1,4 @@
+import { complex } from 'mathjs';
 import { Qubit } from '../qubit';
 
 describe('Qubit', () => {
@@ -25,6 +26,24 @@ describe('Qubit', () => {
     const qubit = new Qubit();
     qubit.applyX();
     expect(qubit.getState()).toEqual([0, 1]);
+  });
+
+  it('should apply the Y gate correctly', () => {
+    const qubit = new Qubit();
+    qubit.applyY();
+    expect(qubit.getState().toString()).toEqual([0, complex(0, -1)].toString());
+  });
+
+  it('should apply the Z gate correctly', () => {
+    const qubit = new Qubit();
+    qubit.applyZ();
+    expect(qubit.getState()).toEqual([1, 0]);
+  });
+
+  it('should apply the T gate correctly', () => {
+    const qubit = new Qubit();
+    qubit.applyT();
+    expect(qubit.getState().toString()).toEqual([1, 0].toString());
   });
 
   it('should measure correctly in the |0> state', () => {
