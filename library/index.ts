@@ -1,4 +1,3 @@
-import { Qubit } from "./Qubit";
-import { Circuit } from "./Circuit";
+import { Circuit } from './Circuit';
 
-export { Qubit, Circuit };
+export { Circuit };

@@ -1,99 +1,59 @@
-import { multiply } from 'mathjs';
-import { Qubit, QubitState } from './Qubit';
-import { CircuitActions } from './CircuitActions';
+import QuantumCircuit from 'quantum-circuit';
+
+import { QuantumCircuitInterface } from './types/quantum-circuit';
 
 export class Circuit {
-  private qubits: Qubit[];
-  private actions: CircuitActions;
+  private quantumCircuit: QuantumCircuitInterface;
 
   constructor(qubitCount: number) {
-    this.qubits = Array.from({ length: qubitCount }, () => new Qubit());
-    this.actions = new CircuitActions(qubitCount);
+    this.quantumCircuit = new QuantumCircuit(qubitCount);
   }
 
-  public h(qubitIndex?: number): void {
-    this.actions.h(qubitIndex);
-    if (qubitIndex === undefined) {
-      this.qubits.forEach((qubit) => qubit.applyHadamard());
-    } else {
-      this.qubits[qubitIndex].applyHadamard();
-    }
+  public h(qubitIndex: number): void {
+    this.quantumCircuit.addGate('h', -1, qubitIndex);
   }
 
-  public x(qubitIndex?: number): void {
-    this.actions.x(qubitIndex);
-    if (qubitIndex === undefined) {
-      this.qubits.forEach((qubit) => qubit.applyX());
-    } else {
-      this.qubits[qubitIndex].applyX();
-    }
+  public x(qubitIndex: number): void {
+    this.quantumCircuit.addGate('x', -1, qubitIndex);
   }
 
-  public y(qubitIndex?: number): void {
-    this.actions.y(qubitIndex);
-    if (qubitIndex === undefined) {
-      this.qubits.forEach((qubit) => qubit.applyY());
-    } else {
-      this.qubits[qubitIndex].applyY();
-    }
+  public y(qubitIndex: number): void {
+    this.quantumCircuit.addGate('y', -1, qubitIndex);
   }
 
-  public z(qubitIndex?: number): void {
-    this.actions.z(qubitIndex);
-    if (qubitIndex === undefined) {
-      this.qubits.forEach((qubit) => qubit.applyZ());
-    } else {
-      this.qubits[qubitIndex].applyZ();
-    }
+  public z(qubitIndex: number): void {
+    this.quantumCircuit.addGate('z', -1, qubitIndex);
   }
 
-  public t(qubitIndex?: number): void {
-    this.actions.t(qubitIndex);
-    if (qubitIndex === undefined) {
-      this.qubits.forEach((qubit) => qubit.applyT());
-    } else {
-      this.qubits[qubitIndex].applyT();
-    }
+  public t(qubitIndex: number): void {
+    this.quantumCircuit.addGate('t', -1, qubitIndex);
   }
 
   public cx(controlQubitIndex: number, targetQubitIndex: number): void {
-    const CONTROL_NOT = [
-      [1, 0, 0, 0],
-      [0, 1, 0, 0],
-      [0, 0, 0, 1],
-      [0, 0, 1, 0],
-    ];
-
-    const controlQubit = this.qubits[controlQubitIndex].getState();
-    const targetQubit = this.qubits[targetQubitIndex].getState();
-
-    const multiplyResult = multiply(CONTROL_NOT, [...controlQubit, ...targetQubit]);
-
-    this.qubits[controlQubitIndex].setState([multiplyResult[0], multiplyResult[1]]);
-    this.qubits[targetQubitIndex].setState([multiplyResult[2], multiplyResult[3]]);
+    this.quantumCircuit.addGate('cx', -1, [controlQubitIndex, targetQubitIndex]);
   }
 
-  public measure(qubitIndex: number): number {
-    return this.qubits[qubitIndex].measure();
+  public print(nonZero?: boolean): void {
+    this.quantumCircuit.print(nonZero);
   }
 
-  public getQubitCount(): number {
-    return this.qubits.length;
+  public run(): void {
+    this.quantumCircuit.run();
   }
 
-  public getQubitStates(): QubitState[][] {
-    return this.qubits.map((qubit) => qubit.getState());
-  }
+  public measure(qubitIndex?: number): number {
+    if (qubitIndex !== undefined) {
+      return this.quantumCircuit.measure(qubitIndex, 'c', qubitIndex);
+    }
 
-  public getActions(): string[][] {
-    return this.actions.getActions();
-  }
-
-  public printActions(): void {
-    this.actions.printActions();
+    return this.quantumCircuit.measureAll();
   }
 
   public toQsharp(): string {
-    return this.actions.toQsharp();
+    return this.quantumCircuit.exportQSharp('quantum.js', false, null, null, false, null);
+  }
+
+  public exportSVG(): string {
+    return this.quantumCircuit.exportSVG(true);
   }
 }
