@@ -14,10 +14,10 @@ async function cleanLibEsm(cb) {
 }
 
 function copyPackage() {
-  return src('library/package.json').pipe(dest('lib-build'));
+  return src('package.json').pipe(dest('lib-build'));
 }
 function copyReadme() {
-  return src('library/README.md').pipe(dest('lib-build'));
+  return src('README.md').pipe(dest('lib-build'));
 }
 async function compileTs() {
   await execa('tspc', ['-p', 'tsconfig.esm.json']);
@@ -33,7 +33,7 @@ async function successMessage(cb) {
 
   console.log(`${prefix}'${green}Build success!${reset}'`);
   console.log(`${prefix}'Current version: ${packageName}'`);
-  console.log(`${prefix}'Gitlab will build and publish your version of package after merge your branch in master'`);
+  console.log(`${prefix}'Github will build and publish your version of package after merge your branch in master'`);
   console.log(`${prefix}'or...'`);
   console.log(`${prefix}'Run ${orange}npm publish${reset} in terminal to upload package to nexus maually'`);
   console.log(`${prefix}'or...'`);

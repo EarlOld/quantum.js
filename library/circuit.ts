@@ -41,7 +41,7 @@ export class Circuit {
     this.quantumCircuit.run();
   }
 
-  public measure(qubitIndex?: number): number {
+  public measure(qubitIndex?: number): number | number[] {
     if (qubitIndex !== undefined) {
       return this.quantumCircuit.measure(qubitIndex, 'c', qubitIndex);
     }
@@ -55,5 +55,48 @@ export class Circuit {
 
   public exportSVG(): string {
     return this.quantumCircuit.exportSVG(true);
+  }
+
+  public static genRandomNumber(max: number): number {
+    // Generate a random number between 0 and max
+    // Max to binary
+    const maxBinary = max.toString(2);
+
+    // Generate a random binary number
+    const circuit = new Circuit(maxBinary.length);
+    for (let i = 0; i < maxBinary.length; i++) {
+      circuit.h(i);
+    }
+
+    circuit.run();
+    const result = circuit.measure() as number[];
+    const binaryResult = result.join('');
+    // Binary to decimal
+    const decimalResult = parseInt(binaryResult, 2);
+
+    if (decimalResult > max) {
+      return this.genRandomNumber(max);
+    }
+
+    return decimalResult;
+  }
+
+  public static genRandomNumberWithRange(min: number, max: number): number {
+    // Generate a random number between min and max
+    const range = max - min;
+    const randomNumber = this.genRandomNumber(range) + min;
+
+    return randomNumber;
+  }
+
+  public static genRandomString(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = this.genRandomNumber(characters.length);
+      result += characters[randomIndex];
+    }
+
+    return result;
   }
 }

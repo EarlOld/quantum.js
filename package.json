@@ -1,16 +1,30 @@
 {
   "name": "@earlold/quantum.js",
   "type": "module",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.1.1",
+  "description": "Quantum.js is a library for quantum computing",
   "main": "index.js",
+  "repository": "https://github.com/EarlOld/quantum.js",
   "scripts": {
     "start": "tsx src/index.ts",
     "test": "jest",
     "build": "tsc",
     "build:lib": "gulp"
   },
-  "keywords": [],
+  "keywords": [
+    "quantum",
+    "quantum-circuit",
+    "quantum-computing",
+    "quantum-gates",
+    "quantum-math",
+    "quantum-mechanics",
+    "quantum-physics",
+    "quantum-programming",
+    "quantum-qubits",
+    "quantum-states",
+    "quantum-superposition",
+    "qubit"
+  ],
   "author": "EarlOd<Dmytro Sapozhnyk>",
   "license": "ISC",
   "devDependencies": {
