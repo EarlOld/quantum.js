@@ -1,3 +1,3 @@
-import { Circuit } from './Circuit';
+import { Circuit } from "./circuit";
 
 export { Circuit };

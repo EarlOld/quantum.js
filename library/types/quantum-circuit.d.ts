@@ -1,5 +1,5 @@
 export interface QuantumCircuitInterface {
-  constructor(numQubits: any);
+  constructor(numQubits: any): QuantumCircuitInterface;
 
   MCU1Circuit(ctrlQubits: any): any;
 
