@@ -2,6 +2,8 @@
 
 This repository contains a quantum computing framework implemented in TypeScript. The library provides a `Circuit` class that allows users to create and manipulate quantum circuits using quantum gates. The library also includes static methods to generate random numbers and strings using quantum principles.
 
+## [Documentation link](https://docs-quantum-js.iot-sdn.space/)
+
 ## Installation
 
 To use the Quantum.js library in your project, you can install it via npm:

@@ -99,4 +99,22 @@ export class Circuit {
 
     return result;
   }
+
+  // public static teleportation(): Circuit {
+  //   const circuit = new Circuit(3);
+
+  //   circuit.h(1);
+  //   circuit.cx(1, 2);
+
+  //   circuit.cx(0, 1);
+  //   circuit.h(0);
+
+  //   circuit.measure(0);
+  //   circuit.measure(1);
+
+  //   circuit.cx(1, 2);
+  //   circuit.cz(0, 2);
+
+  //   return circuit;
+  // }
 }
