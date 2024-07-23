@@ -19,6 +19,10 @@ function copyPackage() {
 function copyReadme() {
   return src('README.md').pipe(dest('lib-build'));
 }
+
+function copyNpmSrc() {
+  return src('.npmrc').pipe(dest('lib-build'));
+}
 async function compileTs() {
   await execa('tspc', ['-p', 'tsconfig.esm.json']);
 }
@@ -48,4 +52,4 @@ async function successMessage(cb) {
   cb();
 }
 
-export default series(cleanLibEsm, copyPackage, copyReadme, compileTs, successMessage);
+export default series(cleanLibEsm, copyPackage, copyReadme, copyNpmSrc, compileTs, successMessage);
