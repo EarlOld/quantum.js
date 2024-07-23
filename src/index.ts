@@ -1,16 +1,11 @@
 import { Circuit } from '../library';
 
-// const circuit = new Circuit(2);
+const circuit = new Circuit(3);
 
-// circuit.h(0);
+const teported = Circuit.teleportationOneToTree(circuit);
 
-// circuit.cx(0, 1);
+teported.print(true);
+console.log('Q#:', circuit.toQsharp());
+const measurement = circuit.measure(2);
 
-// circuit.run();
-
-// circuit.print(true);
-
-// const measurement = circuit.measure(0);
-// console.log('Measurement result:', measurement);
-
-console.log('Hello, world!', Circuit.genRandomString(20));
+console.log('Teported result:', measurement);

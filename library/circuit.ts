@@ -33,6 +33,10 @@ export class Circuit {
     this.quantumCircuit.addGate('cx', -1, [controlQubitIndex, targetQubitIndex]);
   }
 
+  public cz(controlQubitIndex: number, targetQubitIndex: number): void {
+    this.quantumCircuit.addGate('cz', -1, [controlQubitIndex, targetQubitIndex]);
+  }
+
   public print(nonZero?: boolean): void {
     this.quantumCircuit.print(nonZero);
   }
@@ -100,21 +104,21 @@ export class Circuit {
     return result;
   }
 
-  // public static teleportation(): Circuit {
-  //   const circuit = new Circuit(3);
+  public static teleportationOneToTree(circuit: Circuit): Circuit {
+    circuit.h(1);
+    circuit.cx(1, 2);
 
-  //   circuit.h(1);
-  //   circuit.cx(1, 2);
+    circuit.cx(0, 1);
+    circuit.h(0);
 
-  //   circuit.cx(0, 1);
-  //   circuit.h(0);
+    circuit.measure(0);
+    circuit.measure(1);
 
-  //   circuit.measure(0);
-  //   circuit.measure(1);
+    circuit.cx(1, 2);
+    circuit.cz(0, 2);
 
-  //   circuit.cx(1, 2);
-  //   circuit.cz(0, 2);
+    circuit.run();
 
-  //   return circuit;
-  // }
+    return circuit;
+  }
 }
