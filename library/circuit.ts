@@ -1,6 +1,8 @@
 import QuantumCircuit from 'quantum-circuit';
 
 import { QuantumCircuitInterface } from './types/quantum-circuit';
+import { calculateCost, createCostOperator } from './utils/QAOA';
+import { Optimizer } from './utils/QAOA/Optimizer';
 
 export class Circuit {
   private quantumCircuit: QuantumCircuitInterface;
@@ -35,6 +37,22 @@ export class Circuit {
 
   public cz(controlQubitIndex: number, targetQubitIndex: number): void {
     this.quantumCircuit.addGate('cz', -1, [controlQubitIndex, targetQubitIndex]);
+  }
+
+  public rx(angle: number, qubitIndex: number): void {
+    this.quantumCircuit.addGate('rx', -1, qubitIndex, {
+      params: {
+        theta: angle,
+      },
+    });
+  }
+
+  public rz(angle: number, qubitIndex: number): void {
+    this.quantumCircuit.addGate('rz', -1, qubitIndex, {
+      params: {
+        phi: angle,
+      },
+    });
   }
 
   public print(nonZero?: boolean): void {
