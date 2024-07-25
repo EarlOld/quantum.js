@@ -1,11 +1,20 @@
-import { Circuit } from '../library';
+import { optimizeQAOAWithCOBYLA } from 'library/utils/QAOA';
 
-const circuit = new Circuit(3);
+// Приклад використання
+const nodes = [0, 1, 2, 3, 4];
+const edges: Array<[number, number]> = [
+  [0, 3],
+  [0, 4],
+  [1, 3],
+  [1, 4],
+  [2, 3],
+  [2, 4],
+];
+const steps = edges.length;
 
-const teported = Circuit.teleportationOneToTree(circuit);
+const { beta, gamma, score, maxCutScore } = optimizeQAOAWithCOBYLA(nodes, edges, steps);
 
-teported.print(true);
-console.log('Q#:', circuit.toQsharp());
-const measurement = circuit.measure(2);
-
-console.log('Teported result:', measurement);
+console.log('Optimized beta:', beta);
+console.log('Optimized gamma:', gamma);
+console.log('Best score:', score);
+console.log('maxCutScore:', maxCutScore);
