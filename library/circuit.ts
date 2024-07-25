@@ -1,8 +1,6 @@
 import QuantumCircuit from 'quantum-circuit';
 
 import { QuantumCircuitInterface } from './types/quantum-circuit';
-import { calculateCost, createCostOperator } from './utils/QAOA';
-import { Optimizer } from './utils/QAOA/Optimizer';
 
 export class Circuit {
   private quantumCircuit: QuantumCircuitInterface;
