@@ -11,6 +11,10 @@ export class Circuit {
     this.quantumCircuit = new QuantumCircuit(qubitCount);
   }
 
+  public i(qubitIndex: number): void {
+    this.quantumCircuit.addGate('i', -1, qubitIndex);
+  }
+
   public h(qubitIndex: number): void {
     this.quantumCircuit.addGate('h', -1, qubitIndex);
   }
