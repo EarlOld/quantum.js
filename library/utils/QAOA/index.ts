@@ -1,4 +1,4 @@
-import { Circuit } from 'library/circuit';
+import { Circuit } from '../../circuit';
 
 function appendZZTerm(qc: Circuit, q1: number, q2: number, gamma: number) {
   qc.cx(q1, q2);
