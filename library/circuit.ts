@@ -1,5 +1,7 @@
 import QuantumCircuit from 'quantum-circuit';
 
+declare module 'quantum-circuit';
+
 import { QuantumCircuitInterface } from './types/quantum-circuit';
 
 export class Circuit {
