@@ -1,6 +1,6 @@
 # Quantum.js Framework
 
-This repository contains a quantum computing framework implemented in TypeScript. The library provides a `Circuit` class that allows users to create and manipulate quantum circuits using quantum gates. The library also includes static methods to generate random numbers and strings using quantum principles.
+This repository contains a quantum computing framework implemented in TypeScript. The library provides a `Circuit` class that allows users to create and manipulate quantum circuits using quantum gates. The library also includes static methods to generate random numbers and strings using quantum principles. Also, it includes a method to optimize the QAOA algorithm using the COBYLA optimization algorithm for the Max-Cut problem.
 
 ## [Documentation link](https://docs-quantum-js.iot-sdn.space/)
 
@@ -39,16 +39,26 @@ console.log(result);
 
 The library supports the following quantum gates, check the table below for the corresponding methods:
 
-| Gate | Method |
-|------|--------|
-| Identity (I) | i(qubitIndex: number) |
-| Hadamard (H) | h(qubitIndex: number) |
-| Pauli-X (X) | x(qubitIndex: number) |
-| Pauli-Y (Y) | y(qubitIndex: number) |
-| Pauli-Z (Z) | z(qubitIndex: number) |
-| T-gate | t(qubitIndex: number) |
+| Gate                | Method                                        |
+| ------------------- | --------------------------------------------- |
+| Identity (I)        | i(qubitIndex: number)                         |
+| Hadamard (H)        | h(qubitIndex: number)                         |
+| Pauli-X (X)         | x(qubitIndex: number)                         |
+| Pauli-Y (Y)         | y(qubitIndex: number)                         |
+| Pauli-Z (Z)         | z(qubitIndex: number)                         |
+| T-gate              | t(qubitIndex: number)                         |
 | Controlled-X (CNOT) | cx(controlIndex: number, targetIndex: number) |
-| Controlled-Z | cz(controlIndex: number, targetIndex: number) |
+| Controlled-Z        | cz(controlIndex: number, targetIndex: number) |
+
+## Quantum Functions
+
+| Functions                        | Description                                                                             |
+| -------------------------------- | --------------------------------------------------------------------------------------- |
+| Circuit.genRandomNumber          | Generate a random number using quantum principles                                       |
+| Circuit.genRandomString          | Generate a random string using quantum principles                                       |
+| Circuit.genRandomNumberWithRange | Generate a random number within a specified range using quantum principles              |
+| Circuit.teleportationOneToTree   | Teleportation of a qubit from one quantum register to another                           |
+| optimizeQAOAWithCOBYLA           | Optimize the QAOA algorithm using the COBYLA optimization algorithm for Max-Cut problem |
 
 ## Dependencies
 
@@ -58,4 +68,3 @@ The library uses the following dependencies:
 - [quantum-circuit](https://www.npmjs.com/package/quantum-circuit) - For quantum circuit simulation
 
 For more information, check the [documentation](https://docs-quantum-js.iot-sdn.space/).
-

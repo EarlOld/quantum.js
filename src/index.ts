@@ -1,6 +1,5 @@
-import { optimizeQAOAWithCOBYLA } from 'library/utils/QAOA';
+import { optimizeQAOAWithCOBYLA } from 'library';
 
-// Приклад використання
 const nodes = [0, 1, 2, 3, 4];
 const edges: Array<[number, number]> = [
   [0, 3],

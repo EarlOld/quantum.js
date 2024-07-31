@@ -1,7 +1,7 @@
 {
   "name": "@earlold/quantum.js",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Quantum.js is a library for quantum computing",
   "main": "index.js",
   "repository": "https://github.com/EarlOld/quantum.js",
@@ -23,7 +23,8 @@
     "quantum-qubits",
     "quantum-states",
     "quantum-superposition",
-    "qubit"
+    "qubit",
+    "QAOA"
   ],
   "author": "EarlOd<Dmytro Sapozhnyk>",
   "license": "ISC",

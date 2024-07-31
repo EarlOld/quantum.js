@@ -1,11 +1,6 @@
 import QuantumCircuit from 'quantum-circuit';
-
-declare module 'quantum-circuit';
-
-import { QuantumCircuitInterface } from './types/quantum-circuit';
-
 export class Circuit {
-  private quantumCircuit: QuantumCircuitInterface;
+  private quantumCircuit: QuantumCircuit;
 
   constructor(qubitCount: number) {
     this.quantumCircuit = new QuantumCircuit(qubitCount);

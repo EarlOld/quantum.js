@@ -1,3 +1,4 @@
-import { Circuit } from "./circuit";
+import { Circuit } from './circuit';
+import { optimizeQAOAWithCOBYLA } from './utils';
 
-export { Circuit };
+export { Circuit, optimizeQAOAWithCOBYLA };
