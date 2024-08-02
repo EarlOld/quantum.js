@@ -22,7 +22,7 @@ jobs:
       - name: Build library
         run: npm run build:lib
       - name: Publish to npm
-        working-directory: ./app
+        working-directory: ./lib-build
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
