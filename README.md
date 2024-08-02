@@ -15,7 +15,7 @@ npm i @earlold/quantum.js
 ## Basic Example Usage
 
 ```typescript
-import { Circuit } from './circuit'; // Import the Circuit class from the library
+import { Circuit } from '@earlold/quantum.js'; // Import the Circuit class from the library
 
 // Create a quantum circuit with 3 qubits
 const circuit = new Circuit(3);

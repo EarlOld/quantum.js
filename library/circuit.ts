@@ -1,4 +1,5 @@
 import QuantumCircuit from 'quantum-circuit';
+
 export class Circuit {
   private quantumCircuit: QuantumCircuit;
 
