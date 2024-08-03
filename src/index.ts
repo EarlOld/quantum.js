@@ -9,7 +9,7 @@ const edges: Array<[number, number]> = [
   [2, 3],
   [2, 4],
 ];
-const steps = edges.length;
+const steps = 1;
 
 const { beta, gamma, score, maxCutScore } = optimizeQAOAWithCOBYLA(nodes, edges, steps);
 
