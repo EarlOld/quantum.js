@@ -1,0 +1,57 @@
+# QAOA - Quantum Approximate Optimization Algorithm
+
+QAOA is a quantum algorithm that is designed to solve combinatorial optimization problems. It is a hybrid quantum-classical algorithm that uses a quantum computer to evaluate the cost function of a candidate solution and a classical computer to optimize the parameters of the quantum circuit.
+
+The QAOA algorithm is based on the quantum adiabatic theorem, which states that a quantum system remains in its ground state if the Hamiltonian of the system changes slowly enough. The QAOA algorithm uses a parameterized quantum circuit to approximate the ground state of a given Hamiltonian, which encodes the cost function of the optimization problem.
+
+In this notebook, we will implement the QAOA algorithm to solve the MaxCut problem on a random graph. The MaxCut problem is a combinatorial optimization problem that involves partitioning the vertices of a graph into two sets such that the number of edges between the two sets is maximized.
+
+## The MaxCut Problem
+
+Given an undirected graph `G = (V, E)` with a set of vertices `V` and a set of edges `E`, the MaxCut problem is to partition the vertices of the graph into two sets `S`, the number of edges between the two sets is maximized.
+
+
+## QAOA for the MaxCut Problem
+
+The QAOA algorithm uses a parameterized quantum circuit to approximate the ground state of a given Hamiltonian. After preparing the quantum state, the expectation value of the Hamiltonian is measured to evaluate the cost function of the candidate solution. The parameters of the quantum circuit are optimized using a classical optimization algorithm to minimize the cost function.
+
+The QAOA algorithm consists of two main steps:
+
+1. **Quantum State Preparation**: The QAOA algorithm starts by preparing an equal superposition of all possible bitstrings using a Hadamard gate on each qubit. This creates an initial state that is a superposition of all possible solutions to the optimization problem.
+
+2. **Cost Function Evaluation**: The QAOA algorithm uses a parameterized quantum circuit to approximate the ground state of the Hamiltonian that encodes the cost function of the optimization problem. The expectation value of the Hamiltonian is measured to evaluate the cost function of the candidate solution.
+
+The QAOA algorithm repeats these two steps multiple times to optimize the parameters of the quantum circuit and find the optimal solution to the optimization problem.
+
+## Using with Quantum.js
+
+```typescript
+import { optimizeQAOAWithCOBYLA } from 'library';
+
+const nodes = [0, 1, 2, 3, 4];
+const edges: Array<[number, number]> = [
+  [0, 3],
+  [0, 4],
+  [1, 3],
+  [1, 4],
+  [2, 3],
+  [2, 4],
+];
+const steps = edges.length;
+
+const { beta, gamma, score } = optimizeQAOAWithCOBYLA(nodes, edges, steps);
+
+console.log('Optimized beta:', beta);
+console.log('Optimized gamma:', gamma);
+console.log('Best score:', score);
+```
+
+On first line we import the `optimizeQAOAWithCOBYLA` function from the library. This function takes three arguments: `nodes`, `edges` and `steps`. The `nodes` argument is an array of integers representing the vertices of the graph. The `edges` argument is an array of tuples representing the edges of the graph. The `steps` argument is an integer representing the number of steps in the QAOA algorithm.
+
+The function returns an object with three properties: `beta`, `gamma` and `score`. The `beta` and `gamma` properties are arrays of floats representing the optimized parameters of the QAOA algorithm. The `score` property is a integer representing the best score achieved by the QAOA algorithm.
+
+Finally, we print the optimized parameters and the best score to the console.
+
+## [Demo](https://qaoa-quantum-js.iot-sdn.space/)
+
+

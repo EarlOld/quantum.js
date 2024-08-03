@@ -1,0 +1,62 @@
+
+# Example: Quantum Teleportation
+
+This example demonstrates how to create a quantum circuit that performs quantum teleportation using the `Circuit` class. Quantum teleportation allows the transfer of quantum information from one qubit to another without physically transferring the qubit itself.
+
+The code snippet below creates a quantum circuit with 3 qubits and applies the quantum teleportation protocol to teleport the state of the first qubit to the third qubit.
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(3);
+Circuit.teleportationOneToThree(circuit);
+circuit.print();
+```
+
+### Code Explanation
+
+1. **Importing the Circuit Class:**
+   ```typescript
+   import { Circuit } from '@earlold/quantum.js';
+   ```
+   This line imports the `Circuit` class from the `Circuit` module, which provides the necessary functionality to create and manipulate quantum circuits.
+
+2. **Creating a Quantum Circuit:**
+   ```typescript
+   const circuit = new Circuit(3);
+   ```
+   This line initializes a new quantum circuit with 3 qubits. The number `3` specifies the number of qubits in the circuit.
+
+3. **Applying the Quantum Teleportation Protocol:**
+   ```typescript
+   Circuit.teleportationOneToThree(circuit);
+   ```
+   This static method on the `Circuit` class applies the quantum teleportation protocol to the circuit, teleporting the state of the first qubit (qubit 0) to the third qubit (qubit 2).
+
+4. **Printing the Circuit:**
+   ```typescript
+   circuit.print();
+   ```
+   This method prints the current state of the circuit, allowing you to visualize the quantum gates and their positions on the qubits.
+
+### Quantum Teleportation Protocol
+
+The quantum teleportation protocol involves the following steps:
+1. **Entanglement Creation:** Create an entangled pair of qubits (qubits 1 and 2).
+2. **Bell State Measurement:** Perform a Bell state measurement on qubits 0 and 1.
+3. **Classical Communication:** Send the measurement results (classical bits) to the location of the third qubit.
+4. **State Reconstruction:** Apply a corresponding quantum gate on qubit 2 based on the received classical bits to reconstruct the original state of qubit 0 on qubit 2.
+
+The `Circuit.teleportationOneToThree` method encapsulates these steps, making it easy to perform quantum teleportation in your quantum circuits.
+
+### Usage Example
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(3);
+Circuit.teleportationOneToThree(circuit);
+circuit.print();
+```
+
+This example sets up a quantum teleportation circuit with 3 qubits and prints the resulting circuit configuration. The teleportation protocol transfers the state of the first qubit to the third qubit, demonstrating the power of quantum entanglement and classical communication.

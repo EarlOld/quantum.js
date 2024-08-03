@@ -1,0 +1,20 @@
+{
+  "index": {
+    "title": "Introduction"
+  },
+  "circuit": {
+    "title": "Circuit"
+  },
+  "examples": {
+    "title": "Examples"
+  },
+  "algorithms": {
+    "title": "Algorithms"
+  },
+  "contact": {
+    "title": "Dmytro Sapozhnyk",
+    "type": "page",
+    "href": "https://t.me/earlold",
+    "newWindow": true
+  }
+}

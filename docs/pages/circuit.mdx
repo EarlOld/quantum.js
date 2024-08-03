@@ -1,0 +1,73 @@
+### `Circuit` Class Documentation
+
+#### Overview
+The `Circuit` class is a wrapper around the `QuantumCircuit` class, providing a simplified interface for creating and manipulating quantum circuits. It supports common quantum gates, measurement, and export functionalities.
+
+#### Constructor
+- `Circuit(qubitCount: number)`
+
+### Instance Methods
+
+#### `i(qubitIndex: number): void`
+Applies the identity gate to the specified qubit.
+
+#### `h(qubitIndex: number): void`
+Applies the Hadamard gate to the specified qubit.
+
+#### `x(qubitIndex: number): void`
+Applies the Pauli-X (NOT) gate to the specified qubit.
+
+#### `y(qubitIndex: number): void`
+Applies the Pauli-Y gate to the specified qubit.
+
+#### `z(qubitIndex: number): void`
+Applies the Pauli-Z gate to the specified qubit.
+
+#### `t(qubitIndex: number): void`
+Applies the T gate to the specified qubit.
+
+#### `cx(controlQubitIndex: number, targetQubitIndex: number): void`
+Applies the controlled-X (CNOT) gate.
+
+#### `cz(controlQubitIndex: number, targetQubitIndex: number): void`
+Applies the controlled-Z gate.
+
+#### `print(nonZero?: boolean): void`
+Prints the current state of the quantum circuit.
+
+#### `run(): void`
+Executes the quantum circuit.
+
+#### `measure(qubitIndex?: number): number | number[]`
+Measures the specified qubit or all qubits if no index is provided.
+
+#### `toQsharp(): string`
+Exports the circuit to Q# code.
+
+#### `exportSVG(): string`
+Exports the circuit to an SVG representation.
+
+### Static Methods
+
+#### `genRandomNumber(max: number): number`
+Generates a random number between 0 and `max` using a quantum circuit.
+
+#### `genRandomNumberWithRange(min: number, max: number): number`
+Generates a random number between `min` and `max` using a quantum circuit.
+
+#### `genRandomString(length: number): string`
+Generates a random string of the specified length using quantum-generated random numbers.
+
+#### `teleportationOneToTree(circuit: Circuit): Circuit`
+Applies a quantum teleportation protocol on the provided circuit.
+
+### Example: Creating a Quantum Circuit
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(3);
+circuit.h(0);
+circuit.cx(0, 1);
+circuit.run();
+circuit.print();
+```

@@ -1,0 +1,11 @@
+{
+  "i": {
+    "title": "Identity gate"
+  },
+  "genRandomNumber": {
+    "title": "Generate Random Number"
+  },
+  "quantumTeleportation": {
+    "title": "Quantum Teleportation"
+  }
+}

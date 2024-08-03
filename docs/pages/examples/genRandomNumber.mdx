@@ -1,0 +1,17 @@
+# `genRandomNumber` Method
+
+## Description
+Generates a random number between 0 and `max` using a quantum circuit.
+
+## Parameters
+- `max: number` - The upper bound for the random number.
+
+## Returns
+- `number` - A random number between 0 and `max`.
+
+## Example
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const randomNumber = Circuit.genRandomNumber(10);
+console.log(`Random Number: ${randomNumber}`);

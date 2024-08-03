@@ -1,0 +1,15 @@
+# `i` Method
+
+## Description
+Applies the identity gate to the specified qubit.
+
+## Parameters
+- `qubitIndex: number` - The index of the qubit to apply the gate to.
+
+## Example
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(3);
+circuit.i(0);
+circuit.print();
