@@ -60,6 +60,16 @@ The library supports the following quantum gates, check the table below for the 
 | Circuit.teleportationOneToTree   | Teleportation of a qubit from one quantum register to another                           |
 | optimizeQAOAWithCOBYLA           | Optimize the QAOA algorithm using the COBYLA optimization algorithm for Max-Cut problem |
 
+
+## Bell State Functions
+
+| Functions                | Description                                                                 |
+| ------------------------ | --------------------------------------------------------------------------- |
+| Circuit.prepareBellPhiPlus | Prepare the Bell state Phi+                                             |
+| Circuit.prepareBellPhiMinus | Prepare the Bell state Phi-                                             |
+| Circuit.prepareBellPsiPlus | Prepare the Bell state Psi+                                             |
+| Circuit.prepareBellPsiMinus | Prepare the Bell state Psi-                                             |
+
 ## Dependencies
 
 The library uses the following dependencies:

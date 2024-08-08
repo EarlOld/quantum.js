@@ -60,4 +60,47 @@ describe('Circuit', () => {
 
   //   expect(randomString.length).toEqual(10);
   // });
+
+  it('should make bell state PhiPlus', () => {
+    const circuit = new Circuit(2);
+    circuit.prepareBellPhiPlus(0, 1);
+    circuit.run();
+
+    const state = circuit.stateToArray();
+    expect(state[0].chanceStr).toEqual('50.00000');
+    expect(state[3].chanceStr).toEqual('50.00000');
+  });
+
+  it('should make bell state PhiMinus', () => {
+    const circuit = new Circuit(2);
+    circuit.prepareBellPhiMinus(0, 1);
+    circuit.run();
+
+    const state = circuit.stateToArray();
+    expect(state[0].chanceStr).toEqual('50.00000');
+    expect(state[3].chanceStr).toEqual('50.00000');
+  });
+
+
+  it('should make bell state PsiPlus', () => {
+    const circuit = new Circuit(2);
+    circuit.prepareBellPsiPlus(0, 1);
+    circuit.run();
+
+    const state = circuit.stateToArray();
+    expect(state[1].chanceStr).toEqual('50.00000');
+    expect(state[2].chanceStr).toEqual('50.00000');
+  });
+
+  it('should make bell state PsiMinus', () => {
+    const circuit = new Circuit(2);
+    circuit.prepareBellPsiMinus(0, 1);
+    circuit.run();
+
+    const state = circuit.stateToArray();
+    expect(state[1].chanceStr).toEqual('50.00000');
+    expect(state[2].chanceStr).toEqual('50.00000');
+  });
+
+  
 });
