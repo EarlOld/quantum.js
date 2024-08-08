@@ -1,5 +1,7 @@
 import QuantumCircuit from 'quantum-circuit';
 
+import { ObjectQubitState } from './types';
+
 export class Circuit {
   private quantumCircuit: QuantumCircuit;
 
@@ -71,12 +73,62 @@ export class Circuit {
     return this.quantumCircuit.measureAll();
   }
 
+  public stateToString(): string {
+    return this.quantumCircuit.stateAsString(false) as string;
+  }
+
+  public stateToArray(): ObjectQubitState[] {
+    return this.quantumCircuit.stateAsArray(false, undefined, undefined, undefined) as ObjectQubitState[];
+  }
+
   public toQsharp(): string {
     return this.quantumCircuit.exportQSharp('quantum.js', false, null, null, false, null);
   }
 
   public exportSVG(): string {
     return this.quantumCircuit.exportSVG(true);
+  }
+
+  // Bell states
+
+  public prepareBellPhiPlus(first: number, second: number): void {
+    if (first === second) {
+      throw new Error('The qubits must be different');
+    }
+
+    this.h(first);
+    this.cx(first, second);
+  }
+
+  public prepareBellPhiMinus(first: number, second: number): void {
+    if (first === second) {
+      throw new Error('The qubits must be different');
+    }
+
+    this.h(first);
+    this.z(first);
+    this.cx(first, second);
+  }
+
+  public prepareBellPsiPlus(first: number, second: number): void {
+    if (first === second) {
+      throw new Error('The qubits must be different');
+    }
+
+    this.h(first);
+    this.x(second);
+    this.cx(first, second);
+  }
+
+  public prepareBellPsiMinus(first: number, second: number): void {
+    if (first === second) {
+      throw new Error('The qubits must be different');
+    }
+
+    this.h(first);
+    this.z(first);
+    this.x(second);
+    this.cx(first, second);
   }
 
   public static genRandomNumber(max: number): number {

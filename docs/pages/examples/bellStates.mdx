@@ -1,0 +1,101 @@
+# Bell States
+
+## Description
+
+The Bell states are four specific maximally entangled quantum states of two qubits. They are in a superposition of 0 and 1, and are the maximally entangled states. The Bell states form an orthonormal basis for the two qubits, and when one qubit is measured, the outcome of the other qubit is immediately known, no matter how far apart the qubits are.
+
+## Parameters
+
+- `first` (Type: `number`) - The first qubit index.
+- `second` (Type: `number`) - The second qubit index.
+
+## Example 1 - Prepare Bell Phi Plus State
+
+### Code
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(2);
+circuit.prepareBellPhiPlus(0, 1);
+circuit.run();
+console.log(circuit.stateToString);
+```
+
+### Output
+
+```console
+0.00000000+0.00000000i|00>       0.00000%
+0.70710678+0.00000000i|01>      50.00000%
+0.70710678+0.00000000i|10>      50.00000%
+0.00000000+0.00000000i|11>       0.00000%
+```
+
+## Example 2 - Prepare Bell Phi Minus State
+
+### Code
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(2);
+circuit.prepareBellPhiMinus(0, 1);
+circuit.run();
+console.log(circuit.stateToString);
+```
+
+### Output
+
+```console
+0.70710678+0.00000000i|00>      50.00000%
+0.00000000+0.00000000i|01>       0.00000%
+0.00000000+0.00000000i|10>       0.00000%
+-0.70710678+0.00000000i|11>      50.00000%
+```
+
+## Example 3 - Prepare Bell Psi Plus State
+
+### Code
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(2);
+circuit.prepareBellPsiPlus(0, 1);
+circuit.run();
+console.log(circuit.stateToString);
+```
+
+### Output
+
+```console
+0.00000000+0.00000000i|00>       0.00000%
+0.70710678+0.00000000i|01>      50.00000%
+0.70710678+0.00000000i|10>      50.00000%
+0.00000000+0.00000000i|11>       0.00000%
+```
+
+## Example 4 - Prepare Bell Psi Minus State
+
+### Code
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+
+const circuit = new Circuit(2);
+circuit.prepareBellPsiMinus(0, 1);
+circuit.run();
+console.log(circuit.stateToString);
+```
+
+### Output
+
+```console
+ 0.00000000+0.00000000i|00>       0.00000%
+-0.70710678+0.00000000i|01>      50.00000%
+ 0.70710678+0.00000000i|10>      50.00000%
+ 0.00000000+0.00000000i|11>       0.00000%
+```
+
+
+
