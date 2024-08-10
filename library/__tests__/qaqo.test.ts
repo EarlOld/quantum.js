@@ -1,7 +1,7 @@
 import { optimizeQAOAWithCOBYLA } from '../index';
 
 describe('QAOA', () => {
-  it('should create a circuit with 3 qubits', () => {
+  it('should calc', () => {
     const nodes = [0, 1, 2, 3, 4];
     const edges: Array<[number, number]> = [
       [0, 3],

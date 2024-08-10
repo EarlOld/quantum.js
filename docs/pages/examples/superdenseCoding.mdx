@@ -1,0 +1,53 @@
+# Superdense Coding
+
+## Overview
+
+Superdense coding is a quantum communication protocol that enables the transmission of two classical bits of information using a single qubit. This protocol leverages the phenomenon of quantum entanglement, making it one of the most efficient quantum communication techniques.
+
+In this protocol, two parties, typically referred to as **Alice** and **Bob**, share an entangled qubit pair. By performing specific quantum operations on her qubit, Alice can encode two classical bits of information. She then sends her qubit to Bob, who can decode the information using his entangled qubit. This allows them to effectively communicate two classical bits using only one qubit.
+
+### How It Works
+
+1. **Entanglement Creation**: 
+  - Alice and Bob start with a shared entangled qubit pair. This pair is typically in the Bell state `|00 + |11`.
+
+2. **Encoding by Alice**:
+   - Alice encodes her two classical bits (\(00\), \(01\), \(10\), or \(11\)) by applying a specific quantum gate to her qubit. The choice of gate (Identity, X, Z, or XZ) depends on the two bits she wants to send.
+
+3. **Transmission**:
+   - After encoding, Alice sends her qubit to Bob.
+
+4. **Decoding by Bob**:
+   - Bob, now in possession of both qubits, applies a series of quantum operations (specifically, a CNOT gate followed by a Hadamard gate) to decode the original two classical bits.
+
+### Quantum Circuit
+
+Below is the quantum circuit representation of the Superdense Coding protocol. This circuit shows how the two classical bits are encoded into a single qubit and how they can be decoded by the receiving party.
+
+import Image from 'next/image';
+
+<div style={{background: '#fff'}}>
+<Image src="/circuit-1723265269895.webp" alt="Superdense Coding Circuit" width={500} height={300} />
+</div>
+
+### Example Usage in TypeScript
+
+The following example demonstrates how to use the Superdense Coding protocol to send the classical bits "11":
+
+```typescript
+import { sendTwoBitsWithSDC } from '@earlold/quantum.js';
+
+const { data } = sendTwoBitsWithSDC('11');
+
+console.log(data); // Outputs: 11
+```
+
+In this example, `sendTwoBitsWithSDC` is a function that encapsulates the Superdense Coding protocol. It takes the two classical bits as input, encodes them into a qubit, and simulates the decoding process to return the original bits.
+
+### Conclusion
+
+Superdense Coding is a powerful example of quantum communication that highlights the potential of quantum protocols to enhance data transmission efficiency. By understanding and implementing this protocol, you can explore the fascinating interplay between classical and quantum information.
+
+--- 
+
+This version adds more context and explanation to make the documentation clearer and more informative.
