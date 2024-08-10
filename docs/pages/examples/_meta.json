@@ -7,5 +7,14 @@
   },
   "quantumTeleportation": {
     "title": "Quantum Teleportation"
+  },
+  "bellStates": {
+    "title": "Bell States"
+  },
+  "genRandomString": {
+    "title": "Generate Random String"
+  },
+  "superdenseCoding": {
+    "title": "Superdense Coding"
   }
 }

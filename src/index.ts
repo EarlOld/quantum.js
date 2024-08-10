@@ -1,7 +1,8 @@
-import { Circuit } from 'library';
+import { sendTwoBitsWithSDC } from 'library';
+import { circuitToImage } from './node/circuitToImage';
 
-const circuit = new Circuit(2);
-circuit.prepareBellPsiMinus(0, 1);
-circuit.run();
+const { data, circuit } = sendTwoBitsWithSDC('11');
 
-console.log(circuit.stateToString());
+circuitToImage(circuit);
+
+

@@ -1,4 +1,4 @@
 import { Circuit } from './circuit';
-import { optimizeQAOAWithCOBYLA } from './utils';
+import { optimizeQAOAWithCOBYLA, sendTwoBitsWithSDC } from './utils';
 
-export { Circuit, optimizeQAOAWithCOBYLA };
+export { Circuit, optimizeQAOAWithCOBYLA, sendTwoBitsWithSDC };
