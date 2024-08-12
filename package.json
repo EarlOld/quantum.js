@@ -1,7 +1,6 @@
 {
   "name": "@earlold/quantum.js",
-  "type": "module",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Quantum.js is a library for quantum computing",
   "main": "index.js",
   "repository": "https://github.com/EarlOld/quantum.js",
