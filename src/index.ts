@@ -1,8 +1,14 @@
 import { sendTwoBitsWithSDC } from 'library';
 import { circuitToImage } from './node/circuitToImage';
 
-const { data, circuit } = sendTwoBitsWithSDC('11');
+const main = async () => {
+  const { data, circuit } = sendTwoBitsWithSDC('11');
 
-circuitToImage(circuit);
+  console.log(circuit.toQASM());
 
+  console.log(await circuit.runOnIBM(process.env.IBM_API_KEY as string));
 
+  circuitToImage(circuit);
+};
+
+main();

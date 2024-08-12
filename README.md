@@ -4,6 +4,10 @@ This repository contains a quantum computing framework implemented in TypeScript
 
 ## [Documentation link](https://docs-quantum-js.iot-sdn.space/)
 
+## Version
+
+Recomed to use at least the 0.4.0 version of the library.
+
 ## Installation
 
 To use the Quantum.js library in your project, you can install it via npm:

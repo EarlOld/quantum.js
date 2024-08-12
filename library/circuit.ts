@@ -1,6 +1,7 @@
 import QuantumCircuit from 'quantum-circuit';
 
 import { ObjectQubitState } from './types';
+import { runIBMJob } from './api/ibm';
 
 export class Circuit {
   private quantumCircuit: QuantumCircuit;
@@ -83,6 +84,10 @@ export class Circuit {
 
   public toQsharp(): string {
     return this.quantumCircuit.exportQSharp('quantum.js', false, null, null, false, null);
+  }
+
+  public toQASM(): string {
+    return this.quantumCircuit.exportQASM(false, undefined, undefined, undefined, undefined, undefined);
   }
 
   public exportSVG(): string {
@@ -190,5 +195,11 @@ export class Circuit {
     circuit.run();
 
     return circuit;
+  }
+
+  // run on IBM quantum computer
+
+  public async runOnIBM(token: string): Promise<string> {
+    return await runIBMJob(token, this.toQASM());
   }
 }
