@@ -10,7 +10,7 @@ export class Circuit {
   }
 
   public i(qubitIndex: number): void {
-    this.quantumCircuit.addGate('i', -1, qubitIndex);
+    this.quantumCircuit.addGate('id', -1, qubitIndex);
   }
 
   public h(qubitIndex: number): void {

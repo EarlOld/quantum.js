@@ -1,0 +1,47 @@
+
+# Example: Quantum Coin Game
+
+The game is played with a quantum coin, which is in a superposition of heads and tails.
+
+Alice - Quantum Computer
+Bob - Opponent(Human)
+
+heads = |0>
+tails = |1>
+
+### The rules are simple:
+
+1. Alice places the coin in a state of her choice (heads or tails on top) in a box that
+covers the coin. Even by touching the coin, it is impossible to determine which side
+is up.
+2. Bob reaches into the box and has the choice to flip the coin over or not. Alice cannot
+see what he is doing.
+3. Alice reaches into the box and performs an operation of her choice (flip or not flip).
+4. The coin is uncovered and the result is read.
+5. If its heads, then Quantum Computer wins. Else, Opponent(Human) wins.
+
+### Important: Alice and Bob don't know the result of the coin until it is uncovered.
+
+
+The game is implemented using quantum.js.
+
+```typescript
+
+import { getQuantumCoinGameResult, quantumCoinGame } from 'library';
+
+const res = quantumCoinGame(false);
+console.log(getQuantumCoinGameResult(res));
+
+```
+
+### Output
+
+```
+Quantum Computer wins
+```
+
+### Links
+
+1. (Playing with a Quantum Computer)[https://www.npmjs.com/package/library]
+2. (Quantum Coin Game Wiki)[https://en.wikipedia.org/wiki/Quantum_coin_flipping]
+3. (Quantum Coin Game)[https://github.com/Qiskit/textbook/blob/main/notebooks/ch-demos/coin-game.ipynb]

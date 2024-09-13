@@ -1,8 +1,4 @@
-import { sendTwoBitsWithSDC } from 'library';
-import { circuitToImage } from './node/circuitToImage';
+import { getQuantumCoinGameResult, quantumCoinGame } from 'library';
 
-const { data, circuit } = sendTwoBitsWithSDC('11');
-
-circuitToImage(circuit);
-
-
+const res = quantumCoinGame(false);
+console.log(getQuantumCoinGameResult(res));
