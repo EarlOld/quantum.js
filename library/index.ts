@@ -1,4 +1,4 @@
 import { Circuit } from './circuit';
-import { optimizeQAOAWithCOBYLA, sendTwoBitsWithSDC } from './utils';
+import { optimizeQAOAWithCOBYLA, sendTwoBitsWithSDC, quantumCoinGame, getQuantumCoinGameResult } from './utils';
 
-export { Circuit, optimizeQAOAWithCOBYLA, sendTwoBitsWithSDC };
+export { Circuit, optimizeQAOAWithCOBYLA, sendTwoBitsWithSDC, quantumCoinGame, getQuantumCoinGameResult };
