@@ -102,5 +102,13 @@ describe('Circuit', () => {
     expect(state[2].chanceStr).toEqual('50.00000');
   });
 
+  it('should make S state', () => {
+    const circuit = new Circuit(1);
+    circuit.s(0);
+    circuit.run();
+
+    const state = circuit.stateToArray();
+    expect(state[0].chanceStr).toEqual('100.00000');
+  });
   
 });

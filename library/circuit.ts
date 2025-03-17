@@ -33,6 +33,10 @@ export class Circuit {
     this.quantumCircuit.addGate('t', -1, qubitIndex);
   }
 
+  public s(qubitIndex: number): void {
+    this.quantumCircuit.addGate('s', -1, qubitIndex);
+  }
+
   public cx(controlQubitIndex: number, targetQubitIndex: number): void {
     this.quantumCircuit.addGate('cx', -1, [controlQubitIndex, targetQubitIndex]);
   }

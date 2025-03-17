@@ -47,6 +47,7 @@ The library supports the following quantum gates, check the table below for the 
 | Pauli-Y (Y)         | y(qubitIndex: number)                         |
 | Pauli-Z (Z)         | z(qubitIndex: number)                         |
 | T-gate              | t(qubitIndex: number)                         |
+| S-gate              | s(qubitIndex: number)                         |
 | Controlled-X (CNOT) | cx(controlIndex: number, targetIndex: number) |
 | Controlled-Z        | cz(controlIndex: number, targetIndex: number) |
 

@@ -21,10 +21,13 @@ Applies the Pauli-X (NOT) gate to the specified qubit.
 Applies the Pauli-Y gate to the specified qubit.
 
 #### `z(qubitIndex: number): void`
-Applies the Pauli-Z gate to the specified qubit.
+Applies the Pauli-Z gate to the specified qubit. 
 
 #### `t(qubitIndex: number): void`
-Applies the T gate to the specified qubit.
+Applies the T gate to the specified qubit. PI/4 rotation over Z-axis (synonym for r4)
+
+#### `s(qubitIndex: number): void`
+Applies the S gate to the specified qubit. PI/2 rotation over Z-axis (synonym for r2)
 
 #### `cx(controlQubitIndex: number, targetQubitIndex: number): void`
 Applies the controlled-X (CNOT) gate.
