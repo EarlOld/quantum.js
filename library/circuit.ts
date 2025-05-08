@@ -53,6 +53,14 @@ export class Circuit {
     });
   }
 
+  public crx(angle: number, controlQubitIndex: number, targetQubitIndex: number): void {
+    this.quantumCircuit.addGate('crx', -1, [controlQubitIndex, targetQubitIndex], {
+      params: {
+        theta: angle,
+      },
+    });
+  }
+
   public rz(angle: number, qubitIndex: number): void {
     this.quantumCircuit.addGate('rz', -1, qubitIndex, {
       params: {
@@ -110,8 +118,8 @@ export class Circuit {
     }
 
     this.h(first);
-    this.z(first);
     this.cx(first, second);
+    this.z(first);
   }
 
   public prepareBellPsiPlus(first: number, second: number): void {
@@ -120,8 +128,9 @@ export class Circuit {
     }
 
     this.h(first);
-    this.x(second);
     this.cx(first, second);
+
+    this.x(second);
   }
 
   public prepareBellPsiMinus(first: number, second: number): void {
@@ -130,9 +139,10 @@ export class Circuit {
     }
 
     this.h(first);
+    this.cx(first, second);
+
     this.z(first);
     this.x(second);
-    this.cx(first, second);
   }
 
   public static genRandomNumber(max: number): number {
