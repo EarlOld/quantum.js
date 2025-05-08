@@ -36,7 +36,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/EarlOld/quantum.js',
   footer: {
-    text: 'MIT 2024 © EarlOld - Quantum.js@0.4.4',
+    text: 'MIT 2024 © EarlOld - Quantum.js@0.4.5',
   },
 };
 
