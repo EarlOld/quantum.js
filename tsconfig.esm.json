@@ -13,6 +13,7 @@
     "strict": true,
     "declaration": true,
     "declarationDir": "./lib-build",
+    "skipLibCheck": true,
     "plugins": [
       { "transform": "typescript-transform-paths", "exclude": ["**/node_modules/**"] },
       {

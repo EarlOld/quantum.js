@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Number Generator - Quantum.js</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div class="example-container">
+    <a href="/" class="back-link">← Back to Examples</a>
+    
+    <header class="header">
+      <h1>🎲 Quantum Random Number Generator</h1>
+      <p class="subtitle">Generate truly random numbers using quantum superposition</p>
+    </header>
+
+    <div class="example-layout">
+      <div class="controls-panel">
+        <h3>Controls</h3>
+        
+        <div class="control-group">
+          <label for="numBits">Number of Bits</label>
+          <select id="numBits">
+            <option value="1">1 bit (0-1)</option>
+            <option value="2">2 bits (0-3)</option>
+            <option value="3">3 bits (0-7)</option>
+            <option value="4" selected>4 bits (0-15)</option>
+            <option value="5">5 bits (0-31)</option>
+            <option value="6">6 bits (0-63)</option>
+            <option value="7">7 bits (0-127)</option>
+            <option value="8">8 bits (0-255)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <button id="generateBtn" class="btn">Generate Random Number</button>
+        </div>
+
+        <div class="control-group">
+          <button id="generate10Btn" class="btn btn-secondary">Generate 10 Numbers</button>
+        </div>
+
+        <div class="control-group">
+          <label>Last Generated Number</label>
+          <div style="font-size: 3rem; font-weight: bold; text-align: center; color: var(--primary); margin: 1rem 0;">
+            <span id="randomNumber">-</span>
+          </div>
+          <div style="text-align: center; color: var(--text-muted); font-size: 0.875rem;">
+            Binary: <span id="binaryValue">-</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Statistics (last 100 numbers)</label>
+          <div style="font-size: 0.875rem; color: var(--text-muted);">
+            <div>Count: <span id="statsCount">0</span></div>
+            <div>Average: <span id="statsAverage">-</span></div>
+            <div>Min: <span id="statsMin">-</span></div>
+            <div>Max: <span id="statsMax">-</span></div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <button id="clearStatsBtn" class="btn btn-secondary btn-small">Clear Statistics</button>
+        </div>
+      </div>
+
+      <div class="visualization-panel">
+        <div class="bloch-sphere-container">
+          <h3>Qubit 0 (MSB) - Bloch Sphere</h3>
+          <div id="blochSphere"></div>
+        </div>
+
+        <div class="state-info">
+          <h3>Recent Numbers</h3>
+          <div id="recentNumbers" style="font-family: monospace; display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 1.25rem;">
+            <span style="color: var(--text-muted);">No numbers generated yet</span>
+          </div>
+        </div>
+
+        <div class="state-info">
+          <h3>Distribution Chart</h3>
+          <div id="distributionChart" style="height: 300px; display: flex; align-items: flex-end; gap: 2px; padding: 1rem 0;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/scripts/random-number.ts"></script>
+</body>
+</html>

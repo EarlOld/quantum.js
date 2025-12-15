@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bell States - Quantum.js</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div class="example-container">
+    <a href="/" class="back-link">← Back to Examples</a>
+    
+    <header class="header">
+      <h1>🔔 Bell States</h1>
+      <p class="subtitle">Explore the four maximally entangled Bell states</p>
+    </header>
+
+    <div class="example-layout">
+      <div class="controls-panel">
+        <h3>Controls</h3>
+        
+        <div class="control-group">
+          <label for="bellState">Select Bell State</label>
+          <select id="bellState">
+            <option value="phi-plus">|Φ⁺⟩ = (|00⟩ + |11⟩)/√2</option>
+            <option value="phi-minus">|Φ⁻⟩ = (|00⟩ - |11⟩)/√2</option>
+            <option value="psi-plus">|Ψ⁺⟩ = (|01⟩ + |10⟩)/√2</option>
+            <option value="psi-minus">|Ψ⁻⟩ = (|01⟩ - |10⟩)/√2</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="qubitSelect">Visualize Qubit</label>
+          <select id="qubitSelect">
+            <option value="0">Qubit 0</option>
+            <option value="1">Qubit 1</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <button id="generateBtn" class="btn">Generate Bell State</button>
+        </div>
+
+        <div class="control-group">
+          <label>Circuit Operations</label>
+          <div class="button-group">
+            <button id="measureBtn" class="btn btn-secondary btn-small">Measure</button>
+            <button id="resetBtn" class="btn btn-secondary btn-small">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="visualization-panel">
+        <div class="bloch-sphere-container">
+          <h3>Bloch Sphere Visualization</h3>
+          <div id="blochSphere"></div>
+        </div>
+
+        <div class="state-info">
+          <h3>Quantum State Information</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-item-label">State Vector</div>
+              <div class="info-item-value" id="stateVector">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Theta (θ)</div>
+              <div class="info-item-value" id="theta">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Phi (φ)</div>
+              <div class="info-item-value" id="phi">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Bloch Vector</div>
+              <div class="info-item-value" id="blochVector">-</div>
+            </div>
+          </div>
+
+          <div class="probability-bars">
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|0⟩)</span>
+                <span id="prob0">0%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob0Fill" class="probability-bar-fill" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|1⟩)</span>
+                <span id="prob1">0%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob1Fill" class="probability-bar-fill" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/scripts/bell-states.ts"></script>
+</body>
+</html>

@@ -5,6 +5,9 @@
   "circuit": {
     "title": "Circuit"
   },
+  "visualization": {
+    "title": "Bloch Sphere Visualization"
+  },
   "examples": {
     "title": "Examples"
   },

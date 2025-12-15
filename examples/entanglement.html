@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Entanglement - Quantum.js</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div class="example-container">
+    <a href="/" class="back-link">← Back to Examples</a>
+    
+    <header class="header">
+      <h1>🔗 Quantum Entanglement</h1>
+      <p class="subtitle">Explore entangled qubit pairs and quantum correlations</p>
+    </header>
+
+    <div class="example-layout">
+      <div class="controls-panel">
+        <h3>Controls</h3>
+        
+        <div class="control-group">
+          <button id="createEntanglementBtn" class="btn">Create Entangled Pair</button>
+        </div>
+
+        <div class="control-group">
+          <label>Apply Gate to Qubit 0</label>
+          <div class="button-group">
+            <button class="btn btn-small" data-gate="x" data-qubit="0">X</button>
+            <button class="btn btn-small" data-gate="y" data-qubit="0">Y</button>
+            <button class="btn btn-small" data-gate="z" data-qubit="0">Z</button>
+            <button class="btn btn-small" data-gate="h" data-qubit="0">H</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Apply Gate to Qubit 1</label>
+          <div class="button-group">
+            <button class="btn btn-small" data-gate="x" data-qubit="1">X</button>
+            <button class="btn btn-small" data-gate="y" data-qubit="1">Y</button>
+            <button class="btn btn-small" data-gate="z" data-qubit="1">Z</button>
+            <button class="btn btn-small" data-gate="h" data-qubit="1">H</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Measurement</label>
+          <div class="button-group">
+            <button id="measureQubit0Btn" class="btn btn-secondary btn-small">Measure Q0</button>
+            <button id="measureQubit1Btn" class="btn btn-secondary btn-small">Measure Q1</button>
+            <button id="measureBothBtn" class="btn btn-secondary btn-small">Measure Both</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Measurement Results</label>
+          <div style="font-family: monospace; background: var(--background); padding: 1rem; border-radius: 8px; min-height: 100px;">
+            <div id="measurementResults" style="color: var(--text-muted); font-size: 0.875rem;">
+              No measurements yet
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <button id="resetBtn" class="btn btn-secondary btn-small">Reset Circuit</button>
+        </div>
+      </div>
+
+      <div class="visualization-panel">
+        <div class="bloch-sphere-container">
+          <h3>Qubit 0 - Bloch Sphere</h3>
+          <div id="blochSphere0"></div>
+        </div>
+
+        <div class="bloch-sphere-container">
+          <h3>Qubit 1 - Bloch Sphere</h3>
+          <div id="blochSphere1"></div>
+        </div>
+
+        <div class="state-info">
+          <h3>System Information</h3>
+          <div style="font-family: monospace; font-size: 0.875rem; color: var(--text-muted); line-height: 1.8;">
+            <div>State Vector: <span id="fullState" style="color: var(--text);">-</span></div>
+            <div>Entangled: <span id="isEntangled" style="color: var(--text);">-</span></div>
+            <div>Measured: <span id="isMeasured" style="color: var(--text);">No</span></div>
+          </div>
+
+          <div class="probability-bars" style="margin-top: 1.5rem;">
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|00⟩)</span>
+                <span id="prob00">50%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob00Fill" class="probability-bar-fill" style="width: 50%"></div>
+              </div>
+            </div>
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|11⟩)</span>
+                <span id="prob11">50%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob11Fill" class="probability-bar-fill" style="width: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/scripts/entanglement.ts"></script>
+</body>
+</html>
