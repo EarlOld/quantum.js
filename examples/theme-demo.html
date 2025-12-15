@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Demo - Quantum.js</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="example-container">
+      <a href="/" class="back-link">← Back to Examples</a>
+
+      <header class="header">
+        <h1>🎨 Theme Demo</h1>
+        <p class="subtitle">Bloch Sphere with Light and Dark Themes</p>
+      </header>
+
+      <div class="example-layout">
+        <div class="controls-panel">
+          <h3>Controls</h3>
+
+          <div class="control-group">
+            <label>Theme</label>
+            <div class="button-group">
+              <button id="lightTheme" class="btn btn-small active">☀️ Light</button>
+              <button id="darkTheme" class="btn btn-small">🌙 Dark</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>Quantum Gates</label>
+            <div class="button-group">
+              <button id="hadamard" class="btn btn-small">H</button>
+              <button id="pauliX" class="btn btn-small">X</button>
+              <button id="pauliY" class="btn btn-small">Y</button>
+              <button id="pauliZ" class="btn btn-small">Z</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <button id="resetBtn" class="btn btn-secondary btn-small">Reset to |0⟩</button>
+          </div>
+        </div>
+
+        <div class="visualization-panel">
+          <div class="bloch-sphere-container">
+            <h3>Bloch Sphere Visualization</h3>
+            <div id="blochSphere"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/theme-demo.ts"></script>
+  </body>
+</html>

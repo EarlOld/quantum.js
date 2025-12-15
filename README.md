@@ -2,6 +2,39 @@
 
 This repository contains a quantum computing framework implemented in TypeScript. The library provides a `Circuit` class that allows users to create and manipulate quantum circuits using quantum gates. The library also includes static methods to generate random numbers and strings using quantum principles. Also, it includes a method to optimize the QAOA algorithm using the COBYLA optimization algorithm for the Max-Cut problem.
 
+## ✨ New: 3D Bloch Sphere Visualization
+
+Visualize quantum states on an interactive 3D Bloch sphere with WebGL rendering powered by Three.js!
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+import { BlochSphereThreeJS } from '@earlold/quantum.js/visualization';
+
+const circuit = new Circuit(1);
+circuit.h(0);  // Apply Hadamard gate
+circuit.run();
+
+// Create interactive 3D visualization
+const container = document.getElementById('bloch-sphere');
+const renderer = new BlochSphereThreeJS(container, {
+  theme: 'dark',  // or 'light'
+  width: 600,
+  height: 600,
+});
+
+// Update visualization
+renderer.updateState(circuit.getQubitState(0));
+```
+
+**Features:**
+- 🎮 Interactive 3D rotation with mouse controls
+- 🎨 Light and dark themes with customizable colors
+- ✨ Smooth animations for state transitions
+- 🔄 Reset camera button
+- 📱 Responsive and performant WebGL rendering
+
+See the [documentation](https://docs-quantum-js.iot-sdn.space/visualization) for complete guide.
+
 ## [Documentation link](https://docs-quantum-js.iot-sdn.space/)
 
 ## Installation

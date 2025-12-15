@@ -35,8 +35,16 @@ const config: DocsThemeConfig = {
     link: 'https://t.me/iot_sdn',
   },
   docsRepositoryBase: 'https://github.com/EarlOld/quantum.js',
+  banner: {
+    key: 'examples-launch',
+    text: (
+      <a href="https://quantum-js-examples.iot-sdn.space" target="_blank">
+        🎮 Try interactive examples with 3D Bloch sphere visualization →
+      </a>
+    ),
+  },
   footer: {
-    text: 'MIT 2024 © EarlOld - Quantum.js@0.4.6',
+    text: 'MIT 2024 © EarlOld - Quantum.js@0.5.0',
   },
 };
 

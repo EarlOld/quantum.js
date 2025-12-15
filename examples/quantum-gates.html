@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Gates - Quantum.js</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div class="example-container">
+    <a href="/" class="back-link">← Back to Examples</a>
+    
+    <header class="header">
+      <h1>⚡ Quantum Gates</h1>
+      <p class="subtitle">Apply quantum gates and visualize state transformations</p>
+    </header>
+
+    <div class="example-layout">
+      <div class="controls-panel">
+        <h3>Controls</h3>
+        
+        <div class="control-group">
+          <label>Single-Qubit Gates</label>
+          <div class="button-group">
+            <button class="btn btn-small" data-gate="h">H</button>
+            <button class="btn btn-small" data-gate="x">X</button>
+            <button class="btn btn-small" data-gate="y">Y</button>
+            <button class="btn btn-small" data-gate="z">Z</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Phase Gates</label>
+          <div class="button-group">
+            <button class="btn btn-small" data-gate="s">S</button>
+            <button class="btn btn-small" data-gate="t">T</button>
+            <button class="btn btn-small" data-gate="sdg">S†</button>
+            <button class="btn btn-small" data-gate="tdg">T†</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Rotation Gates</label>
+          <div class="button-group">
+            <button class="btn btn-small" data-gate="rx">Rx</button>
+            <button class="btn btn-small" data-gate="ry">Ry</button>
+            <button class="btn btn-small" data-gate="rz">Rz</button>
+          </div>
+        </div>
+
+        <div class="control-group" id="angleControl" style="display: none;">
+          <label for="rotationAngle">Rotation Angle (degrees)</label>
+          <input type="range" id="rotationAngle" min="0" max="360" value="90" step="15">
+          <span id="angleValue">90°</span>
+        </div>
+
+        <div class="control-group">
+          <label>Circuit Control</label>
+          <div class="button-group">
+            <button id="resetBtn" class="btn btn-secondary btn-small">Reset to |0⟩</button>
+            <button id="clearBtn" class="btn btn-secondary btn-small">Clear History</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Gate History</label>
+          <div id="gateHistory" style="font-family: monospace; font-size: 0.875rem; color: var(--text-muted); max-height: 200px; overflow-y: auto;">
+            None
+          </div>
+        </div>
+      </div>
+
+      <div class="visualization-panel">
+        <div class="bloch-sphere-container">
+          <h3>Bloch Sphere Visualization</h3>
+          <div id="blochSphere"></div>
+        </div>
+
+        <div class="state-info">
+          <h3>Quantum State Information</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-item-label">State Vector</div>
+              <div class="info-item-value" id="stateVector">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Theta (θ)</div>
+              <div class="info-item-value" id="theta">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Phi (φ)</div>
+              <div class="info-item-value" id="phi">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Bloch Vector</div>
+              <div class="info-item-value" id="blochVector">-</div>
+            </div>
+          </div>
+
+          <div class="probability-bars">
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|0⟩)</span>
+                <span id="prob0">100%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob0Fill" class="probability-bar-fill" style="width: 100%"></div>
+              </div>
+            </div>
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|1⟩)</span>
+                <span id="prob1">0%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob1Fill" class="probability-bar-fill" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/scripts/quantum-gates.ts"></script>
+</body>
+</html>

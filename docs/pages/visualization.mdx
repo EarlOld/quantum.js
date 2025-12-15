@@ -1,0 +1,685 @@
+---
+title: Bloch Sphere Visualization
+---
+
+# Bloch Sphere Visualization
+
+Quantum.js provides powerful 3D visualization tools for quantum states using the Bloch sphere. The Bloch sphere is a geometric representation of a single qubit's quantum state rendered with WebGL using Three.js.
+
+## 🎮 Try Interactive Examples
+
+**👉 [quantum-js-examples.iot-sdn.space](https://quantum-js-examples.iot-sdn.space)**
+
+Explore live examples with interactive 3D Bloch sphere visualization, including:
+- Quantum Gates demo
+- Bell States visualization
+- Superposition and Entanglement
+- Theme switching (Light/Dark)
+
+## Introduction
+
+The Bloch sphere maps quantum states to points on a unit sphere:
+- |0⟩ state → North pole (top, +Z axis)
+- |1⟩ state → South pole (bottom, -Z axis)
+- |+⟩ state → +X axis
+- |-⟩ state → -X axis
+- |+i⟩ state → +Y axis
+- |-i⟩ state → -Y axis
+
+## Basic Usage
+
+### Interactive 3D Visualization
+
+```typescript
+import { Circuit } from '@earlold/quantum.js';
+import { BlochSphereThreeJS } from '@earlold/quantum.js/visualization';
+
+// Create a circuit with one qubit
+const circuit = new Circuit(1);
+
+// Apply Hadamard gate
+circuit.h(0);
+circuit.run();
+
+// Get the container element
+const container = document.getElementById('bloch-sphere');
+
+// Create 3D renderer
+const renderer = new BlochSphereThreeJS(container, {
+  theme: 'light',
+  width: 600,
+  height: 600,
+});
+
+// Get quantum state and update visualization
+const state = circuit.getQubitState(0);
+renderer.updateState(state);
+```
+
+### Dark Theme
+
+```typescript
+const renderer = new BlochSphereThreeJS(container, {
+  theme: 'dark',
+});
+
+// Switch theme dynamically
+renderer.setTheme('dark');
+```
+
+## Interactive Features
+
+The 3D visualization includes:
+- **Mouse Rotation**: Click and drag to rotate the sphere
+- **Mouse Zoom**: Scroll to zoom in/out
+- **Reset Camera**: Click the ↺ button to reset view
+- **Smooth Animations**: State transitions are animated with ease-out interpolation
+- **Real-time Updates**: Apply gates and see immediate visual feedback
+
+## Examples
+
+### Visualizing Different States
+
+#### Ground State |0⟩
+
+```typescript
+const circuit = new Circuit(1);
+circuit.run();
+
+const renderer = new BlochSphereThreeJS(container);
+const state = circuit.getQubitState(0);
+renderer.updateState(state);
+```
+
+The state vector will point to the north pole (top) of the sphere.
+
+#### Excited State |1⟩
+
+```typescript
+const circuit = new Circuit(1);
+circuit.x(0); // Apply X gate (NOT gate)
+circuit.run();
+
+const state = circuit.getQubitState(0);
+renderer.updateState(state);
+```
+
+The state vector will point to the south pole (bottom) of the sphere.
+
+#### Superposition State |+⟩
+
+```typescript
+const circuit = new Circuit(1);
+circuit.h(0); // Apply Hadamard gate
+circuit.run();
+
+const state = circuit.getQubitState(0);
+renderer.updateState(state);
+```
+
+The state vector will point along the +X axis (equal superposition of |0⟩ and |1⟩).
+
+#### Interactive Gate Application
+
+```typescript
+// Create renderer
+const renderer = new BlochSphereThreeJS(container);
+const circuit = new Circuit(1);
+
+// Apply gates dynamically
+document.getElementById('hadamard-btn').addEventListener('click', () => {
+  circuit.h(0);
+  circuit.run();
+  renderer.updateState(circuit.getQubitState(0));
+});
+
+document.getElementById('pauli-x-btn').addEventListener('click', () => {
+  circuit.x(0);
+  circuit.run();
+  renderer.updateState(circuit.getQubitState(0));
+});
+```
+
+## Customization Options
+
+### Theme Options
+
+```typescript
+// Predefined themes
+const options = {
+  theme: 'light',  // 'light' | 'dark' | 'custom'
+  width: 800,
+  height: 800,
+};
+
+const renderer = new BlochSphereThreeJS(container, options);
+```
+
+### Custom Color Scheme
+
+```typescript
+import { type ColorScheme } from '@earlold/quantum.js/visualization';
+
+const customColors: ColorScheme = {
+  background: '#1a1a2e',
+  upperHemisphere: 0x4a5568,
+  lowerHemisphere: 0x6b7280,
+  equatorPlane: 0x60a5fa,
+  equatorRing: 0x3b82f6,
+  meridians: 0x60a5fa,
+  axisX: 0xef4444,
+  axisY: 0x22c55e,
+  axisZ: 0x3b82f6,
+  arrow: 0xff6b6b,
+  arrowCone: 0xff5252,
+  originSphere: 0xff6b6b,
+  labels: '#ffffff',
+};
+
+const renderer = new BlochSphereThreeJS(container, {
+  theme: 'custom',
+  colorScheme: customColors,
+});
+```
+
+## Advanced Usage
+
+### Working with Multi-Qubit Systems
+
+For multi-qubit circuits, you can visualize individual qubits:
+
+```typescript
+const circuit = new Circuit(3);
+circuit.h(0);
+circuit.cx(0, 1);
+circuit.h(2);
+circuit.run();
+
+// Create separate containers and renderers
+const renderer0 = new BlochSphereThreeJS(document.getElementById('qubit-0'));
+const renderer1 = new BlochSphereThreeJS(document.getElementById('qubit-1'));
+const renderer2 = new BlochSphereThreeJS(document.getElementById('qubit-2'));
+
+// Update each visualization
+renderer0.updateState(circuit.getQubitState(0));
+renderer1.updateState(circuit.getQubitState(1));
+renderer2.updateState(circuit.getQubitState(2));
+```
+
+### Getting Qubit State Information
+
+```typescript
+import { Circuit, type QubitState } from '@earlold/quantum.js';
+
+const circuit = new Circuit(1);
+circuit.h(0);
+circuit.run();
+
+const state: QubitState = circuit.getQubitState(0);
+
+console.log('Amplitude of |0⟩:', state.amplitude0);
+console.log('Amplitude of |1⟩:', state.amplitude1);
+console.log('Probability of measuring |0⟩:', state.probability0);
+console.log('Probability of measuring |1⟩:', state.probability1);
+console.log('Bloch vector:', state.blochVector);
+console.log('Spherical coordinates:', state.spherical);
+```
+
+### Using the Coordinate Converter
+
+```typescript
+import { CoordinateConverter, type Complex } from '@earlold/quantum.js/visualization';
+
+// Create a custom state
+const amp0: Complex = { re: 1 / Math.sqrt(2), im: 0 };
+const amp1: Complex = { re: 0, im: 1 / Math.sqrt(2) };
+
+// Convert to Bloch coordinates
+const blochVector = CoordinateConverter.stateToBloch(amp0, amp1);
+console.log('Bloch vector:', blochVector);
+
+// Convert to full state
+const state = CoordinateConverter.createQubitState(amp0, amp1);
+
+// Display in 3D
+renderer.updateState(state);
+```
+
+## Understanding the 3D Visualization
+
+### Components of the Bloch Sphere
+
+1. **Hemispheres**: 
+   - Upper hemisphere (blue/purple): States closer to |0⟩
+   - Lower hemisphere (purple/grey): States closer to |1⟩
+2. **Axes**: 
+   - Z-axis (blue, vertical): |0⟩ (up) to |1⟩ (down)
+   - X-axis (red): |+⟩ to |-⟩ basis
+   - Y-axis (green): |+i⟩ to |-i⟩ basis
+3. **State Vector**: 
+   - Cyan arrow with cone head
+   - Originates from center sphere
+   - Points to current quantum state
+4. **Equatorial Plane**: Horizontal disc at z=0
+5. **Meridians**: Vertical grid lines showing sphere structure
+6. **Labels**: |0⟩, |1⟩, |+⟩, |-⟩, |+i⟩, |-i⟩
+
+### Camera Controls
+
+- **Rotate**: Left-click and drag
+- **Zoom**: Mouse wheel
+- **Reset**: Click ↺ button in top-right corner
+
+### Common Quantum Gates on the Bloch Sphere
+
+- **X gate**: Rotation around X-axis by π (flips |0⟩ ↔ |1⟩)
+- **Y gate**: Rotation around Y-axis by π
+- **Z gate**: Rotation around Z-axis by π (phase flip)
+- **H gate** (Hadamard): Creates superposition (|0⟩ → |+⟩)
+- **S gate**: Rotation around Z-axis by π/2
+- **T gate**: Rotation around Z-axis by π/4
+
+## Browser Integration
+
+Complete HTML example:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3D Bloch Sphere</title>
+  <style>
+    #bloch-sphere {
+      width: 600px;
+      height: 600px;
+      position: relative;
+    }
+    
+    .controls {
+      margin: 20px 0;
+    }
+    
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button id="btn-h">Hadamard (H)</button>
+    <button id="btn-x">Pauli-X</button>
+    <button id="btn-y">Pauli-Y</button>
+    <button id="btn-z">Pauli-Z</button>
+  </div>
+  
+  <div class="controls">
+    <button id="theme-light">☀️ Light</button>
+    <button id="theme-dark">🌙 Dark</button>
+  </div>
+  
+  <div id="bloch-sphere"></div>
+  
+  <script type="module">
+    import { Circuit } from '@earlold/quantum.js';
+    import { BlochSphereThreeJS } from '@earlold/quantum.js/visualization';
+    
+    const circuit = new Circuit(1);
+    const container = document.getElementById('bloch-sphere');
+    const renderer = new BlochSphereThreeJS(container, { theme: 'light' });
+    
+    circuit.run();
+    renderer.updateState(circuit.getQubitState(0));
+    
+    document.getElementById('btn-h').onclick = () => {
+      circuit.h(0);
+      circuit.run();
+      renderer.updateState(circuit.getQubitState(0));
+    };
+    
+    document.getElementById('btn-x').onclick = () => {
+      circuit.x(0);
+      circuit.run();
+      renderer.updateState(circuit.getQubitState(0));
+    };
+    
+    document.getElementById('theme-light').onclick = () => {
+      renderer.setTheme('light');
+    };
+    
+    document.getElementById('theme-dark').onclick = () => {
+      renderer.setTheme('dark');
+    };
+  </script>
+</body>
+</html>
+```
+
+## API Reference
+
+### BlochSphereThreeJS
+
+#### Constructor
+
+```typescript
+new BlochSphereThreeJS(container: HTMLElement, options?: VisualizationOptions)
+```
+
+**Parameters:**
+- `container`: HTML element to render the visualization
+- `options`: Optional configuration
+
+**Options:**
+- `width?: number` - Canvas width (default: 600)
+- `height?: number` - Canvas height (default: 600)
+- `theme?: 'light' | 'dark' | 'custom'` - Color theme
+- `colorScheme?: ColorScheme` - Custom colors (when theme is 'custom')
+
+#### Methods
+
+##### `updateState(state: QubitState): void`
+
+Update the visualization with a new quantum state.
+
+##### `setTheme(theme: 'light' | 'dark' | 'custom', customScheme?: ColorScheme): void`
+
+Change the color theme dynamically.
+
+##### `resetCamera(): void`
+
+Reset camera to initial position.
+
+##### `resize(width: number, height: number): void`
+
+Resize the rendering canvas.
+
+##### `dispose(): void`
+
+Clean up resources and remove the visualization.
+
+### Circuit Methods
+
+#### `getQubitState(qubitIndex: number): QubitState`
+
+Get the quantum state of a specific qubit.
+
+**Returns:** QubitState object with amplitude and probability information
+
+## Troubleshooting
+
+### Canvas Not Displaying
+
+Ensure the container element exists and has dimensions:
+
+```html
+<div id="bloch-sphere" style="width: 600px; height: 600px;"></div>
+```
+
+### Performance Issues
+
+For better performance with multiple visualizations:
+
+```typescript
+// Reduce canvas size
+const renderer = new BlochSphereThreeJS(container, {
+  width: 400,
+  height: 400,
+});
+
+// Clean up when done
+renderer.dispose();
+```
+
+### WebGL Not Supported
+
+Check browser compatibility:
+
+```typescript
+const canvas = document.createElement('canvas');
+const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+if (!gl) {
+  console.error('WebGL not supported');
+}
+```
+
+## Next Steps
+
+- Explore quantum [algorithms](/algorithms/qaoa) with visualization
+- Learn about [quantum gates](/circuit#gates)
+- Try the [examples](/examples/bellStates) with 3D visualization
+
+
+```typescript
+import { Circuit, type VisualizationOptions } from '@earlold/quantum.js';
+
+const circuit = new Circuit(1);
+circuit.h(0);
+
+const options: VisualizationOptions = {
+  width: 800,              // SVG width in pixels
+  height: 800,             // SVG height in pixels
+  showAxes: true,          // Show coordinate axes
+  showLabels: true,        // Show state labels (|0⟩, |1⟩, etc.)
+  showProbabilities: true, // Show measurement probabilities
+  showPhase: true,         // Show phase information
+  showEquator: true,       // Show equator circle
+  arrowColor: '#2563eb',   // Color of state vector arrow
+  arrowWidth: 3,           // Width of state vector arrow
+  sphereColor: '#e5e7eb',  // Color of sphere outline
+  sphereOpacity: 0.2,      // Opacity of sphere
+  backgroundColor: '#fff',  // Background color
+  axisColor: '#6b7280',    // Color of axes
+  labelSize: 16,           // Font size for labels
+  gridLines: true,         // Show grid lines
+};
+
+const svg = circuit.visualizeQubit(0, options);
+```
+
+### Minimal Visualization
+
+For a clean, minimal look:
+
+```typescript
+const svg = circuit.visualizeQubit(0, {
+  showProbabilities: false,
+  showPhase: false,
+  showEquator: false,
+  gridLines: false,
+});
+```
+
+### Large High-Resolution Visualization
+
+For presentations or publications:
+
+```typescript
+const svg = circuit.visualizeQubit(0, {
+  width: 1200,
+  height: 1200,
+  arrowWidth: 5,
+  labelSize: 24,
+});
+```
+
+## Advanced Usage
+
+### Working with Multi-Qubit Systems
+
+For multi-qubit circuits, you can visualize individual qubits:
+
+```typescript
+const circuit = new Circuit(3);
+circuit.h(0);
+circuit.cx(0, 1);
+circuit.h(2);
+
+// Visualize each qubit separately
+const svg0 = circuit.visualizeQubit(0);
+const svg1 = circuit.visualizeQubit(1);
+const svg2 = circuit.visualizeQubit(2);
+```
+
+### Getting Qubit State Information
+
+You can also get the raw quantum state data:
+
+```typescript
+import { Circuit, type QubitState } from '@earlold/quantum.js';
+
+const circuit = new Circuit(1);
+circuit.h(0);
+
+const state: QubitState = circuit.getQubitState(0);
+
+console.log('Amplitude of |0⟩:', state.amplitude0);
+console.log('Amplitude of |1⟩:', state.amplitude1);
+console.log('Probability of measuring |0⟩:', state.probability0);
+console.log('Probability of measuring |1⟩:', state.probability1);
+console.log('Bloch vector:', state.blochVector);
+console.log('Spherical coordinates:', state.spherical);
+```
+
+### Using the Coordinate Converter
+
+For direct manipulation of quantum states:
+
+```typescript
+import { CoordinateConverter, type Complex } from '@earlold/quantum.js';
+
+// Create a custom state
+const amp0: Complex = { re: 1 / Math.sqrt(2), im: 0 };
+const amp1: Complex = { re: 0, im: 1 / Math.sqrt(2) };
+
+// Convert to Bloch coordinates
+const blochVector = CoordinateConverter.stateToBloch(amp0, amp1);
+console.log('Bloch vector:', blochVector);
+
+// Convert back to quantum state
+const state = CoordinateConverter.createQubitState(amp0, amp1);
+console.log('State:', state);
+
+// Format for display
+const formattedAmp = CoordinateConverter.formatComplex(amp0);
+const formattedAngle = CoordinateConverter.formatAngle(Math.PI / 4);
+```
+
+## Understanding the Visualization
+
+### Components of the Bloch Sphere
+
+1. **Sphere**: Represents all possible pure quantum states
+2. **Axes**: 
+   - Z-axis (vertical): |0⟩ to |1⟩ basis
+   - X-axis: |+⟩ to |-⟩ basis
+   - Y-axis: |+i⟩ to |-i⟩ basis
+3. **State Vector (Arrow)**: Points to the current quantum state
+4. **Equator**: Circle representing maximum superposition
+5. **Phase Circle**: Shows the phase component of the state
+
+### State Information Panel
+
+When `showProbabilities` is enabled, you'll see:
+- **P(|0⟩)**: Probability of measuring the qubit in state |0⟩
+- **P(|1⟩)**: Probability of measuring the qubit in state |1⟩
+- **θ (theta)**: Polar angle (0 to π)
+- **φ (phi)**: Azimuthal angle (0 to 2π)
+
+### Common Quantum Gates on the Bloch Sphere
+
+- **X gate**: Rotation around X-axis by π (flips |0⟩ ↔ |1⟩)
+- **Y gate**: Rotation around Y-axis by π
+- **Z gate**: Rotation around Z-axis by π (phase flip)
+- **H gate** (Hadamard): Rotation that creates superposition
+- **S gate**: Rotation around Z-axis by π/2 (phase gate)
+- **T gate**: Rotation around Z-axis by π/4
+
+## Browser Integration
+
+To display the SVG in a web page:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bloch Sphere Visualization</title>
+</head>
+<body>
+  <div id="visualization"></div>
+  
+  <script type="module">
+    import { Circuit } from '@earlold/quantum.js';
+    
+    const circuit = new Circuit(1);
+    circuit.h(0);
+    
+    const svg = circuit.visualizeQubit(0);
+    document.getElementById('visualization').innerHTML = svg;
+  </script>
+</body>
+</html>
+```
+
+## Troubleshooting
+
+### Empty or Invalid Visualization
+
+Make sure to run the circuit before visualizing:
+
+```typescript
+const circuit = new Circuit(1);
+circuit.h(0);
+circuit.run(); // Explicitly run the circuit
+const svg = circuit.visualizeQubit(0);
+```
+
+### Qubit Index Out of Range
+
+Ensure the qubit index is valid:
+
+```typescript
+const circuit = new Circuit(2); // Only 2 qubits (indices 0 and 1)
+// circuit.visualizeQubit(2); // ❌ Error! Index out of range
+circuit.visualizeQubit(0); // ✅ Valid
+circuit.visualizeQubit(1); // ✅ Valid
+```
+
+## API Reference
+
+### Circuit Methods
+
+#### `visualizeQubit(qubitIndex: number, options?: VisualizationOptions): string`
+
+Generate SVG visualization of a specific qubit.
+
+**Parameters:**
+- `qubitIndex`: Index of the qubit to visualize
+- `options`: Optional visualization settings
+
+**Returns:** SVG string
+
+#### `getQubitState(qubitIndex: number): QubitState`
+
+Get the quantum state of a specific qubit.
+
+**Parameters:**
+- `qubitIndex`: Index of the qubit
+
+**Returns:** QubitState object with amplitude and probability information
+
+#### `saveVisualization(qubitIndex: number, filepath: string, options?: VisualizationOptions): void`
+
+Save visualization to file (Node.js only).
+
+**Parameters:**
+- `qubitIndex`: Index of the qubit to visualize
+- `filepath`: Path where to save the SVG file
+- `options`: Optional visualization settings
+
+## Next Steps
+
+- Explore quantum [algorithms](/algorithms/qaoa) using visualization
+- Learn about [quantum gates](/circuit#gates)
+- Try the [examples](/examples/bellStates) with visualization

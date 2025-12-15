@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superposition - Quantum.js</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div class="example-container">
+    <a href="/" class="back-link">← Back to Examples</a>
+    
+    <header class="header">
+      <h1>🌊 Superposition</h1>
+      <p class="subtitle">Create custom quantum superposition states</p>
+    </header>
+
+    <div class="example-layout">
+      <div class="controls-panel">
+        <h3>Controls</h3>
+        
+        <div class="control-group">
+          <label for="thetaSlider">Theta (θ): <span id="thetaValue">90°</span></label>
+          <input type="range" id="thetaSlider" min="0" max="180" value="90" step="5">
+        </div>
+
+        <div class="control-group">
+          <label for="phiSlider">Phi (φ): <span id="phiValue">0°</span></label>
+          <input type="range" id="phiSlider" min="0" max="360" value="0" step="15">
+        </div>
+
+        <div class="control-group">
+          <label>Preset States</label>
+          <div class="button-group">
+            <button class="btn btn-small" data-preset="0">|0⟩</button>
+            <button class="btn btn-small" data-preset="1">|1⟩</button>
+            <button class="btn btn-small" data-preset="plus">|+⟩</button>
+            <button class="btn btn-small" data-preset="minus">|-⟩</button>
+          </div>
+          <div class="button-group" style="margin-top: 0.5rem;">
+            <button class="btn btn-small" data-preset="i-plus">|+i⟩</button>
+            <button class="btn btn-small" data-preset="i-minus">|-i⟩</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <button id="applyBtn" class="btn">Apply Custom State</button>
+        </div>
+      </div>
+
+      <div class="visualization-panel">
+        <div class="bloch-sphere-container">
+          <h3>Bloch Sphere Visualization</h3>
+          <div id="blochSphere"></div>
+        </div>
+
+        <div class="state-info">
+          <h3>Quantum State Information</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-item-label">State Vector</div>
+              <div class="info-item-value" id="stateVector">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Theta (θ)</div>
+              <div class="info-item-value" id="theta">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Phi (φ)</div>
+              <div class="info-item-value" id="phi">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-item-label">Bloch Vector</div>
+              <div class="info-item-value" id="blochVector">-</div>
+            </div>
+          </div>
+
+          <div class="probability-bars">
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|0⟩)</span>
+                <span id="prob0">50%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob0Fill" class="probability-bar-fill" style="width: 50%"></div>
+              </div>
+            </div>
+            <div class="probability-bar">
+              <div class="probability-bar-label">
+                <span>P(|1⟩)</span>
+                <span id="prob1">50%</span>
+              </div>
+              <div class="probability-bar-fill-container">
+                <div id="prob1Fill" class="probability-bar-fill" style="width: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/scripts/superposition.ts"></script>
+</body>
+</html>
