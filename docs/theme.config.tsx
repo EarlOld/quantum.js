@@ -44,7 +44,7 @@ const config: DocsThemeConfig = {
     ),
   },
   footer: {
-    text: 'MIT 2024 © EarlOld - Quantum.js@0.5.1',
+    text: 'MIT 2024 © EarlOld - Quantum.js@0.5.2',
   },
 };
 

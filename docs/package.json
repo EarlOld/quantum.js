@@ -1,6 +1,6 @@
 {
   "name": "docs.quantum.js",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Documentation for Quantum.js",
   "scripts": {
     "dev": "next dev",
