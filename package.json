@@ -17,7 +17,7 @@
     "build": "tsc",
     "prebuild:lib": "rm -rf lib-build",
     "build:lib": "tspc -p tsconfig.esm.json",
-    "postbuild:lib": "cp package.json lib-build/ && cp README.md lib-build/ && cp .npmrc lib-build/"
+    "postbuild:lib": "cp package.json lib-build/ && cp README.md lib-build/"
   },
   "keywords": [
     "quantum",
