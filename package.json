@@ -3,7 +3,10 @@
   "version": "0.5.0",
   "description": "Quantum.js is a library for quantum computing",
   "main": "index.js",
-  "repository": "https://github.com/EarlOld/quantum.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EarlOld/quantum.js.git"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
