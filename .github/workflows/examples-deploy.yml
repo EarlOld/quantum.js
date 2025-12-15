@@ -26,7 +26,10 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       
-      - name: Install dependencies
+      - name: Install root dependencies (for library)
+        run: npm ci
+      
+      - name: Install examples dependencies
         working-directory: ./examples
         run: npm ci
       
