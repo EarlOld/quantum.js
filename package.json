@@ -4,6 +4,10 @@
   "description": "Quantum.js is a library for quantum computing",
   "main": "index.js",
   "repository": "https://github.com/EarlOld/quantum.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "scripts": {
     "start": "tsx src/index.ts",
     "test": "jest",
